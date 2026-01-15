@@ -3,7 +3,7 @@
 
 # Event Management API – Assignment Submission
 
-Hi! My name is Hailie Formosa and this is my submission for the Event Management REST API assignment. I built this project using FastAPI and MongoDB Atlas as part of my coursework. The process helped me learn a lot about backend development, APIs, and working with cloud databases.
+My name is Hailie Jade Formosa, Class CCD_6.2A and this is my submission for the Database Essentials Assignment. I built this project using FastAPI and MongoDB Atlas.
 
 **Date submitted:** January 15, 2026  
 **Assignment:** Event Management REST API with FastAPI & MongoDB Atlas
@@ -150,14 +150,11 @@ Response:
 ---
 
 ## GitHub Repository
-
-Repo URL: https://github.com/your-username/DE_Assignment
-
+Repo URL: https://github.com/hailieformosa-mcast/DE_Assignment
 ## Public API URL
+Live API: https://de-assignment-alpha.vercel.app/docs
 
-Live API: https://your-vercel-project-url.vercel.app
-
----
+--- 
 
 ## Security & Best Practices
 - **Credentials:** All sensitive info is stored in `.env` (never committed to git)
@@ -185,6 +182,8 @@ Live API: https://your-vercel-project-url.vercel.app
 
 ## Assignment Notes
 - All requirements from the assignment brief are covered
+- Everything is documented inside the README.md and HailieFormosa_CCD_6.12A_DE_AssignmentHome.docx
 
 ---
 
+    
