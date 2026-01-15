@@ -46,13 +46,13 @@ class Booking(BaseModel):
     quantity: int
 
 # Event Endpoints
-@app.post("/events")
+@app.post("/events", tags=["API Endpoints"])
 async def create_event(event: Event):
     event_doc = event.dict()
     result = await db.events.insert_one(event_doc)
     return {"message": "Event created", "id": str(result.inserted_id)}
 
-@app.get("/events")
+@app.get("/events", tags=["API Endpoints"])
 async def get_events():
     events = await db.events.find().to_list(100)
     for event in events:
@@ -62,7 +62,7 @@ async def get_events():
 # Get single event by ID
 from bson import ObjectId
 
-@app.get("/events/{event_id}")
+@app.get("/events/{event_id}", tags=["API Endpoints"])
 async def get_event(event_id: str):
     event = await db.events.find_one({"_id": ObjectId(event_id)})
     if not event:
@@ -71,7 +71,7 @@ async def get_event(event_id: str):
     return event
 
 # Update event by ID
-@app.put("/events/{event_id}")
+@app.put("/events/{event_id}", tags=["API Endpoints"])
 async def update_event(event_id: str, event: Event):
     result = await db.events.update_one({"_id": ObjectId(event_id)}, {"$set": event.dict()})
     if result.matched_count == 0:
@@ -79,7 +79,7 @@ async def update_event(event_id: str, event: Event):
     return {"message": "Event updated"}
 
 # Delete event by ID
-@app.delete("/events/{event_id}")
+@app.delete("/events/{event_id}", tags=["API Endpoints"])
 async def delete_event(event_id: str):
     result = await db.events.delete_one({"_id": ObjectId(event_id)})
     if result.deleted_count == 0:
@@ -87,14 +87,14 @@ async def delete_event(event_id: str):
     return {"message": "Event deleted"}
 
 # Attendee Endpoints
-@app.post("/attendees")
+@app.post("/attendees", tags=["API Endpoints"])
 async def create_attendee(attendee: Attendee):
     attendee_doc = attendee.dict()
     result = await db.attendees.insert_one(attendee_doc)
     return {"message": "Attendee created", "id": str(result.inserted_id)}
 
 # Get all attendees
-@app.get("/attendees")
+@app.get("/attendees", tags=["API Endpoints"])
 async def get_attendees():
     attendees = await db.attendees.find().to_list(100)
     for attendee in attendees:
@@ -102,7 +102,7 @@ async def get_attendees():
     return attendees
 
 # Get single attendee by ID
-@app.get("/attendees/{attendee_id}")
+@app.get("/attendees/{attendee_id}", tags=["API Endpoints"])
 async def get_attendee(attendee_id: str):
     attendee = await db.attendees.find_one({"_id": ObjectId(attendee_id)})
     if not attendee:
@@ -111,7 +111,7 @@ async def get_attendee(attendee_id: str):
     return attendee
 
 # Update attendee by ID
-@app.put("/attendees/{attendee_id}")
+@app.put("/attendees/{attendee_id}", tags=["API Endpoints"])
 async def update_attendee(attendee_id: str, attendee: Attendee):
     result = await db.attendees.update_one({"_id": ObjectId(attendee_id)}, {"$set": attendee.dict()})
     if result.matched_count == 0:
@@ -119,7 +119,7 @@ async def update_attendee(attendee_id: str, attendee: Attendee):
     return {"message": "Attendee updated"}
 
 # Delete attendee by ID
-@app.delete("/attendees/{attendee_id}")
+@app.delete("/attendees/{attendee_id}", tags=["API Endpoints"])
 async def delete_attendee(attendee_id: str):
     result = await db.attendees.delete_one({"_id": ObjectId(attendee_id)})
     if result.deleted_count == 0:
@@ -127,14 +127,14 @@ async def delete_attendee(attendee_id: str):
     return {"message": "Attendee deleted"}
 
 # Venue Endpoints
-@app.post("/venues")
+@app.post("/venues", tags=["API Endpoints"])
 async def create_venue(venue: Venue):
     venue_doc = venue.dict()
     result = await db.venues.insert_one(venue_doc)
     return {"message": "Venue created", "id": str(result.inserted_id)}
 
 # Get all venues
-@app.get("/venues")
+@app.get("/venues", tags=["API Endpoints"])
 async def get_venues():
     venues = await db.venues.find().to_list(100)
     for venue in venues:
@@ -142,7 +142,7 @@ async def get_venues():
     return venues
 
 # Get single venue by ID
-@app.get("/venues/{venue_id}")
+@app.get("/venues/{venue_id}", tags=["API Endpoints"])
 async def get_venue(venue_id: str):
     venue = await db.venues.find_one({"_id": ObjectId(venue_id)})
     if not venue:
@@ -151,7 +151,7 @@ async def get_venue(venue_id: str):
     return venue
 
 # Update venue by ID
-@app.put("/venues/{venue_id}")
+@app.put("/venues/{venue_id}", tags=["API Endpoints"])
 async def update_venue(venue_id: str, venue: Venue):
     result = await db.venues.update_one({"_id": ObjectId(venue_id)}, {"$set": venue.dict()})
     if result.matched_count == 0:
@@ -159,7 +159,7 @@ async def update_venue(venue_id: str, venue: Venue):
     return {"message": "Venue updated"}
 
 # Delete venue by ID
-@app.delete("/venues/{venue_id}")
+@app.delete("/venues/{venue_id}", tags=["API Endpoints"])
 async def delete_venue(venue_id: str):
     result = await db.venues.delete_one({"_id": ObjectId(venue_id)})
     if result.deleted_count == 0:
@@ -167,14 +167,14 @@ async def delete_venue(venue_id: str):
     return {"message": "Venue deleted"}
 
 # Booking Endpoints
-@app.post("/bookings")
+@app.post("/bookings", tags=["API Endpoints"])
 async def create_booking(booking: Booking):
     booking_doc = booking.dict()
     result = await db.bookings.insert_one(booking_doc)
     return {"message": "Booking created", "id": str(result.inserted_id)}
 
 # Get all bookings
-@app.get("/bookings")
+@app.get("/bookings", tags=["API Endpoints"])
 async def get_bookings():
     bookings = await db.bookings.find().to_list(100)
     for booking in bookings:
@@ -182,7 +182,7 @@ async def get_bookings():
     return bookings
 
 # Get single booking by ID
-@app.get("/bookings/{booking_id}")
+@app.get("/bookings/{booking_id}", tags=["API Endpoints"])
 async def get_booking(booking_id: str):
     booking = await db.bookings.find_one({"_id": ObjectId(booking_id)})
     if not booking:
@@ -191,7 +191,7 @@ async def get_booking(booking_id: str):
     return booking
 
 # Update booking by ID
-@app.put("/bookings/{booking_id}")
+@app.put("/bookings/{booking_id}", tags=["API Endpoints"])
 async def update_booking(booking_id: str, booking: Booking):
     result = await db.bookings.update_one({"_id": ObjectId(booking_id)}, {"$set": booking.dict()})
     if result.matched_count == 0:
@@ -199,7 +199,7 @@ async def update_booking(booking_id: str, booking: Booking):
     return {"message": "Booking updated"}
 
 # Delete booking by ID
-@app.delete("/bookings/{booking_id}")
+@app.delete("/bookings/{booking_id}", tags=["API Endpoints"])
 async def delete_booking(booking_id: str):
     result = await db.bookings.delete_one({"_id": ObjectId(booking_id)})
     if result.deleted_count == 0:
@@ -207,7 +207,7 @@ async def delete_booking(booking_id: str):
     return {"message": "Booking deleted"}
 
 # Upload Event Poster (Image)
-@app.post("/upload_event_poster/{event_id}")
+@app.post("/upload_event_poster/{event_id}", tags=["API Endpoints"])
 async def upload_event_poster(event_id: str, file: UploadFile = File(...)):
     content = await file.read()
     poster_doc = {
@@ -221,7 +221,7 @@ async def upload_event_poster(event_id: str, file: UploadFile = File(...)):
     return {"message": "Event poster uploaded", "id": str(result.inserted_id)}
 
 # Get all event posters
-@app.get("/event_posters")
+@app.get("/event_posters", tags=["API Endpoints"])
 async def get_event_posters():
     posters = await db.event_posters.find().to_list(100)
     for poster in posters:
@@ -229,7 +229,7 @@ async def get_event_posters():
     return posters
 
 # Get single event poster by ID
-@app.get("/event_posters/{poster_id}")
+@app.get("/event_posters/{poster_id}", tags=["API Endpoints"])
 async def get_event_poster(poster_id: str):
     poster = await db.event_posters.find_one({"_id": ObjectId(poster_id)})
     if not poster:
@@ -239,7 +239,7 @@ async def get_event_poster(poster_id: str):
 
 
 # Upload Promotional Video
-@app.post("/upload_promo_video/{event_id}")
+@app.post("/upload_promo_video/{event_id}", tags=["API Endpoints"])
 async def upload_promo_video(event_id: str, file: UploadFile = File(...)):
     content = await file.read()
     video_doc = {
@@ -253,7 +253,7 @@ async def upload_promo_video(event_id: str, file: UploadFile = File(...)):
     return {"message": "Promotional video uploaded", "id": str(result.inserted_id)}
 
 # Get all promotional videos
-@app.get("/promo_videos")
+@app.get("/promo_videos", tags=["API Endpoints"])
 async def get_promo_videos():
     videos = await db.promo_videos.find().to_list(100)
     for video in videos:
@@ -261,7 +261,7 @@ async def get_promo_videos():
     return videos
 
 # Get single promotional video by ID
-@app.get("/promo_videos/{video_id}")
+@app.get("/promo_videos/{video_id}", tags=["API Endpoints"])
 async def get_promo_video(video_id: str):
     video = await db.promo_videos.find_one({"_id": ObjectId(video_id)})
     if not video:
@@ -270,7 +270,7 @@ async def get_promo_video(video_id: str):
     return video
 
 # Upload Venue Photo
-@app.post("/upload_venue_photo/{venue_id}")
+@app.post("/upload_venue_photo/{venue_id}", tags=["API Endpoints"])
 async def upload_venue_photo(venue_id: str, file: UploadFile = File(...)):
     content = await file.read()
     photo_doc = {
@@ -284,7 +284,7 @@ async def upload_venue_photo(venue_id: str, file: UploadFile = File(...)):
     return {"message": "Venue photo uploaded", "id": str(result.inserted_id)}
 
 # Get all venue photos
-@app.get("/venue_photos")
+@app.get("/venue_photos", tags=["API Endpoints"])
 async def get_venue_photos():
     photos = await db.venue_photos.find().to_list(100)
     for photo in photos:
@@ -292,7 +292,7 @@ async def get_venue_photos():
     return photos
 
 # Get single venue photo by ID
-@app.get("/venue_photos/{photo_id}")
+@app.get("/venue_photos/{photo_id}", tags=["API Endpoints"])
 async def get_venue_photo(photo_id: str):
     photo = await db.venue_photos.find_one({"_id": ObjectId(photo_id)})
     if not photo:
