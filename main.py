@@ -1,3 +1,4 @@
+# Import necessary libraries
 import os
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.responses import StreamingResponse
@@ -295,3 +296,7 @@ async def get_venue_photo(photo_id: str):
         raise HTTPException(status_code=404, detail="Venue photo not found")
     photo["_id"] = str(photo["_id"])
     return photo
+
+@app.get("/")
+def read_root():
+    return {"message": "Event Management API"}

@@ -1,7 +1,7 @@
 
 
 
-# Event Management API – Assignment Submission
+# Event Management API
 
 Hi! My name is Hailie Formosa and this is my submission for the Event Management REST API assignment. I built this project using FastAPI and MongoDB Atlas as part of my coursework. The process helped me learn a lot about backend development, APIs, and working with cloud databases.
 
