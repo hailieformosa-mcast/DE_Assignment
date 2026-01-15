@@ -11,7 +11,10 @@ import motor.motor_asyncio
 # Load environment variables from .env file
 load_dotenv()
 
-app = FastAPI()
+app = FastAPI(
+    title="Event Management API",
+    description="API for managing events, attendees, venues, bookings, and media uploads."
+)
 
 # Connect to MongoDB Atlas
 MONGO_URI = "mongodb+srv://hailieformosae22027_db_user:eZDyarcysXaHQI3y@databasedeployments.glu6ktw.mongodb.net/event_management_db?appName=DatabaseDeployments"
